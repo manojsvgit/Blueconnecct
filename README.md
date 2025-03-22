@@ -1,4 +1,4 @@
-# Worker-Connect
+# BlueConnect
 
 ## ♾️ About The Project
 
