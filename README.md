@@ -1,4 +1,4 @@
-```markdown
+
 # BlueConnect
 
 ## ♾️ About The Project
@@ -16,4 +16,3 @@ BlueConnect incorporates a price negotiation system to promote fair and transpar
 The web application is built using the MERN stack, which comprises MongoDB, Express.js, React.js, and Node.js. This technology stack provides a robust and scalable foundation for the platform, enabling efficient data storage, server-side processing, and dynamic user interfaces. The MERN stack ensures a seamless user experience, facilitating smooth interactions between workers, clients, and the platform.
 
 BlueConnect aims to empower blue-collar workers by providing them with a digital platform to showcase their skills, connect with potential clients, and expand their professional opportunities. Simultaneously, the project offers clients a convenient and reliable way to find skilled workers for their specific job requirements. With its user-friendly interface and comprehensive features, BlueConnect contributes to fostering a collaborative and efficient ecosystem for blue-collar services.
-```
