@@ -499,6 +499,49 @@
             margin-bottom: 20px;
         }
         
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #0275d8;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
         /* Media Queries */
         @media (max-width: 768px) {
             .header-container {
@@ -541,14 +584,30 @@
     <header class="site-header">
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html">BlueConnect</a>
+                <a href="index.html"><b style="color: #4a90e2; font-size:30px;">Blue<b style="color:midnightblue;">Connect</b></b></a>
             </div>
             
             <nav class="main-nav">
                 <ul>
-                    <li><a href="Blues.html">Browse services</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    
+                    <li><a href="#categories">Services</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#featured-workers">Providers</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-btn">Login</a>
+                        <div class="dropdown-content">
+                            <a href="user-login.html">User Login</a>
+                            <a href="admin-login.html">Admin Login</a>
+                            <a href="guest-login.html">Guest Login</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-btn">Register</a>
+                        <div class="dropdown-content">
+                            <a href="worker-register.html">Worker Registration</a>
+                            <a href="client-register.html">Client Registration</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -560,13 +619,13 @@
             <h1>Connect with Skilled Professionals for Any Job</h1>
             <p>Find reliable blue-collar workers for your projects or offer your skills to clients</p>
             <div class="hero-buttons">
-                <a href="/api/worker/register" class="btn btn-primary">Find Worker</a>
-                <a href="/api/client/register.html" class="btn btn-secondary">Become a Customer</a>
+                <a href="worker-register.html" class="btn btn-primary">Find Worker</a>
+                <a href="client-register.html" class="btn btn-secondary">Become a Customer</a>
             </div>
         </div>
     </section>
     
-    <section class="categories">
+    <section class="categories" id="categories">
         <div class="container">
             <h2>Browse service Categories</h2>
             <div class="category-grid">
@@ -634,7 +693,7 @@
         </div>
     </section>
     
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
             <h2>How It Works</h2>
             <div class="steps">
@@ -659,7 +718,7 @@
         </div>
     </section>
     
-    <section class="featured-workers">
+    <section class="featured-workers" id="featured-workers">
         <div class="container">
             <h2>Featured Blue Providers</h2>
             <div class="worker-grid">
@@ -718,7 +777,7 @@
         <div class="container">
             <h2>Ready to Get Started?</h2>
             <p>Join thousands of professionals and clients on our platform</p>
-            <a href="register.html" class="btn btn-large">Sign Up Now</a>
+            <a href="client-register.html" class="btn btn-large">Sign Up Now</a>
         </div>
     </section>
     
@@ -734,8 +793,8 @@
                 <div class="footer-section">
                     <h3>For Workers</h3>
                     <ul>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">Sign Up as Worker</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="worker-register.html">Sign Up as Worker</a></li>
                         <li><a href="#">Worker Success Stories</a></li>
                         <li><a href="#">Safety Tips</a></li>
                     </ul>
@@ -744,8 +803,8 @@
                 <div class="footer-section">
                     <h3>For Clients</h3>
                     <ul>
-                        <li><a href="#">Find a Worker</a></li>
-                        <li><a href="#">Post a Job</a></li>
+                        <li><a href="#featured-workers">Find a Worker</a></li>
+                        <li><a href="client-register.html">Post a Job</a></li>
                         <li><a href="#">Client Reviews</a></li>
                         <li><a href="#">Pricing</a></li>
                     </ul>
@@ -756,7 +815,7 @@
                     <ul>
                         <li><a href="#">Help Center</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Blue</a></li>
+                        <li><a href="#">Terms of Use</a></li>
                         <li><a href="#">Contact Support</a></li>
                     </ul>
                 </div>
