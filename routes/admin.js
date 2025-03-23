@@ -3,6 +3,7 @@ const router = express.Router();
 
 const adminController = require('../controllers/admin');
 
+
 router.post('/register', adminController.register_post);
 router.post('/update', adminController.update_profile_post);
 router.get('/logout', adminController.logout);

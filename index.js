@@ -8,6 +8,7 @@ const path = require('path');
 const workerController = require('./controllers/worker');
 const clientController = require('./controllers/client');
 const adminController = require('./controllers/admin');
+const landingController = require('./controllers/landing');
 const adminRoutes = require('./routes/admin');
 const workerRoutes = require('./routes/worker');
 const clientRoutes = require('./routes/client');
@@ -59,9 +60,9 @@ app.listen(port, () => {
 	console.log(`Listening on port http://localhost:${port}`);
 });
 
-app.get('/', (req, res) => {
-	res.send('Hello Word');
-});
+// app.get('/', (req, res) => {
+// 	res.send('Hello Word');
+// });
 
 //mailer
 const GMAIL=process.env.GMAIL || 'cvi23csds@cmrit.ac.in';
@@ -91,6 +92,8 @@ app.post('/sendmail',(res,req)=>{
 		res.status(200).send('email sent'+info.response);
 	});
 });
+
+app.get('/',landingController.renderHomeDashboard);
 
 // Public Route for Admin
 app.post('/api/admin/login', adminController.login_post);
