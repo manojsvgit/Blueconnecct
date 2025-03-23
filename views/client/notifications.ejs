@@ -1,63 +1,74 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Client Login</title>
+    <title>Request Sent!</title>
+    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/styles.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="/favicon-32.svg" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="/favicon-256.svg" />
+
+    <link href="https://assets.website-files.com/62aee78456e4207786ac4d18/62b0fad1a8cf6a4c26b3cb5e_Faivcon%2032.svg"
+        rel="shortcut icon" type="image/x-icon" />
+    <link href="https://assets.website-files.com/62aee78456e4207786ac4d18/62b0fad95898ce119a80c68e_Faivcon%20256.svg"
+        rel="apple-touch-icon" />
 </head>
+
 <body>
-    <header class="nav-bar">
-        <div class="nav-container">
+    <div data-collapse="small" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
+        role="banner" class="nav-bar w-nav">
+        <div class="nav-container w-container">
             <div class="logo-div">
-                <a href="/api/client/home" class="logotext"><b>Blue Connect</b></a>
+                <a href="/api/client/home" aria-current="page" class="logotext" style="margin-right: 350px;"><b>workerConnect</b></a>
             </div>
-            <nav class="nav-content">
-                <ul class="nav-menu">
-                    <li><a href="/api/client/home" class="nav-link">Home</a></li>
-                    <li><a href="#" class="nav-link">About Us</a></li>
-                    <li><a href="#" class="nav-link">For Clients</a></li>
-                    <li><a href="#" class="nav-link">For Workers</a></li>
-                    <li><a href="#" class="nav-link">Contact Us</a></li>
-                </ul>
-                <div class="nav-cta">
-                    <a href="/api/client/login" class="cta-button">Log In</a>
-                    <a href="/api/client/register" class="cta-button primary">Register</a>
+
+            <nav role="navigation" class="nav-content w-nav-menu">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link w-nav-link">Home</a>
+                    <a href="#" class="nav-link w-nav-link" id="addTask1">Add Task</a>
+                    <a href="/api/client/mytask" class="nav-link w-nav-link">My Tasks</a>
+                    <a href="/api/client/notification" class="nav-link w-nav-link" style="color:#710101;">
+                        <b>Notifications</b> </a>
+                    <a href="/api/client/profile" class="nav-link w-nav-link">My Profile</a>
+                </div>
+
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1 w-nav-link">Log Out</a>
                 </div>
             </nav>
-            <button class="menu-button">
-                <img src="/menu-icon.svg" alt="Menu" class="menu-icon" />
-            </button>
-        </div>
-    </header>
-
-    <main class="page-wrapper">
-        <section class="section light-gradient">
-            <div class="container">
-                <div class="hero-grid">
-                    <img src="/assets/client.jpg" alt="Client Login" class="hero-illustration" />
-                    <form action="/api/client/login" method="post" class="login-form">
-                        <div class="form-box">
-                            <% if(errMsg !== '') { %>
-                                <p class="error-message"><%= errMsg %></p>
-                            <% } %>
-                            <h1 class="heading">Login as a Client</h1>
-                            <label for="email" class="form-label">Email address:</label>
-                            <input type="email" name="email" id="email" class="text-field" placeholder="Enter your email" required />
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="password" name="password" id="password" class="text-field" placeholder="Enter password" required />
-                            <button type="submit" class="button">Login as Client</button>
-                            <p class="account-info">
-                                <a href="/api/client/register">Don't have an Account?</a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
+            <div class="menu-button w-nav-button">
+                <img src="https://assets.website-files.com/62aee78456e4207786ac4d18/62aee78456e4200f2eac4d49_Menu%20Icon.svg"
+                    loading="lazy" width="24" alt="" class="menu-icon" />
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient  wf-section" style="padding-top:3%">
+            <div class="container w-container">
+                <div class="text-box _1200px center-align ">
+                    <h2 class="heading h2">Notifications</h2>
+                    <br>
+                    <% for(let i=0; i<notifications.length; i++){ %>
+                        <div class="message_container" style="text-align: start;border: 1px solid silver;padding: 1rem; border-radius: 5px;background-color: white;">
+                            <div class="date_box">
+                                <p><i><%=notifications[i].ts.toLocaleString()%></i></p>
+                            </div>
+                            <div class="message_box" style="font-size: 1.1rem;">
+                                <%=notifications[i].message%>
+                            </div>
+                        </div>
+                        
+                        <br>
+                    <% } %>
+                    </div>
+                <br>
+                
+            </div>
+        </div>
+
 </body>
+
 </html>

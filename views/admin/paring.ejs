@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Workers - Admin</title>
+    <title>Verify Workers - Admin</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/styles.css" rel="stylesheet" type="text/css" />
@@ -22,17 +22,17 @@
         role="banner" class="nav-bar w-nav">
         <div class="nav-container w-container">
             <div class="logo-div">
-                <a href="/api/admin/dashboard" aria-current="page" class="logotext" style="margin-right: 275px;"><b>Blue Connect</b></a>
+                <a href="#" aria-current="page" class="logotext" style="margin-right: 275px;"><b>workerConnect</b></a>
             </div>
 
             <nav role="navigation" class="nav-content w-nav-menu">
                 <div class="nav-menu">
                     <a href="/api/admin/dashboard" class="nav-link w-nav-link" >Dashboard</a>
                     <!-- <a href="verifyworkers.html" class="nav-link w-nav-link" >Verify Workers</a> -->
-                    <a href="/api/admin/workers" class="nav-link w-nav-link" style="color:#710101;"><b>Workers</b></a>
+                    <a href="/api/admin/workers" class="nav-link w-nav-link">Workers</a>
                     <a href="/api/admin/categories" class="nav-link w-nav-link">Categories</a>
-                    <a href="admin_pairings.html" class="nav-link w-nav-link" >Pairings</a>
-                    <a href="/api/admin/clients" class="nav-link w-nav-link" >Clients</a>
+                    <a href="/api/admin/paring" class="nav-link w-nav-link" style="color:#710101;"><b>Pairings</b></a>
+                    <a href="/api/admin/clients" class="nav-link w-nav-link">Clients</a>
                 </div>
                 
                 <div class="nav-cta-button-container">
@@ -50,50 +50,78 @@
         <div class="section light-color-gradient  wf-section" style="padding-top:3%">
             <div class="container w-container">
                 <div class="text-box _1200px center-align " >
-                    <h2 class="heading h2">Our Workers</h2>
+                    <h2 class="heading h2">Worker-Client Pairing</h2>
                     
                     <table class="styled-table">
                         <thead>
-                            <tr>
+                            <tr >
+                                <th>Task ID</th>
+                                <th>Task Name</th>
                                 <th>Worker Name</th>
-                                <th>Email</th>
-                                <th>Mobile Number</th>
-                                <th>ID Proof</th>
-                                <th>Action</th>
-                                <th>DOB</th>
-                                <th>Qualification</th>
-                                <th>Address</th>
-                                <th>joining Date</th>
-                                <th>Status</th>
+                                <th>Client Name</th>
+                                <!-- <th>Category</th> -->
+                                <!-- <th>Final Cost</th> -->
+                                <!-- <th>Appointment Details</th> -->
+                                <!-- <th>Status</th> -->
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(let i=0; i<workers.length; i++) { %>
-                                    <tr>
-                                        <td class="t-name"><%= workers[i].name %></td>
-                                        <td><%= workers[i].email %></td>
-                                        <td><%= workers[i].phone %></td>
-                                        <td><button class="table-view-btn" id="viewBtn<%=i%>">View</button></td>
-                                        <td>
-                                            <button class="table-accept-btn" style="margin: 0.2rem 0;"><a href="/api/admin/verify/accept/<%=workers[i]._id%>" style="color: white; text-decoration: none; font-weight: bold;" >Accept</a></button>
-                                            <button class="table-reject-btn" style="margin: 0.2rem 0;"><a href="/api/admin/verify/reject/<%=workers[i]._id%>" style="color: white; text-decoration: none; font-weight: bold;">Reject</a></button>
-                                        </td>
-                                        <td><%= workers[i].dob.getDate() %>/<%= workers[i].dob.getMonth() + 1 %>/<%= workers[i].dob.getFullYear() %></td>
-                                        <td><%= workers[i].highestQualification %></td>
-                                        <td><a href="<%=workers[i].address%>" target="_blank">Address</a></td>
-                                        <td><%= workers[i].joiningDate.getDate() %>/<%= workers[i].joiningDate.getMonth() + 1 %>/<%= workers[i].joiningDate.getFullYear() %></td>
-                                        <% if(workers[i].isVerify) { %>
-                                        <td style="padding: 1rem;background-color: green;  color: white;">Verify</td>
-                                        <% } else {%>
-                                            <td style="padding: 1rem;background-color: red;  color: white;">Not Verify</td>
-                                        <% } %>
-                                    </tr>
+                            <% for(let i=0; i<tasks.length; i++){ %>
+                            <tr>
+                                <th><%=tasks[i]._id%></th>
+                                <td class="t-name"><%=tasks[i].title%></td>
+                                <td><%=tasks[i].workerName%></td>
+                                <td><%=tasks[i].clientName%></td>
+                            </tr>
                             <% } %>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content" style="padding-left: 50px; padding-top: 30px;">
+              <span class="close" id="closeBtn">&times;</span>
+              <p style="font-weight: bold;">Name: Dom David</p>
+              <p style="font-weight: bold;">Email: dom@gmail.com</p>
+              <p style="font-weight: bold;">Mobile: +91 7558612763</p>
+              <p style="font-weight: bold;">Categories: Carpentry</p>
+            </div>
+          
+          </div>
     </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("viewBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+    </script>
 </body>
+
 </html>
