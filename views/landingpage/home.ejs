@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueConnect - Connect with Blue-Collar Workers</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #0275d8;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: #0275d8;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #025aa5;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-large {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+        }
+        
+        /* Header Styles */
+        .site-header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0275d8;
+        }
+        
+        .main-nav ul {
+            display: flex;
+        }
+        
+        .main-nav li {
+            margin-left: 20px;
+        }
+        
+        .main-nav a {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .main-nav a:hover {
+            color: #0275d8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1600x800/?construction') no-repeat center center/cover;
+            height: 500px;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .categories h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .category-card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-card h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .how-it-works h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #0275d8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+        }
+        
+        /* Featured Workers Section */
+        .featured-workers {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .featured-workers h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        
+        .worker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .worker-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .worker-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .worker-info {
+            padding: 20px;
+        }
+        
+        .worker-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        .worker-skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .skill-tag {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .worker-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: #0275d8;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta .btn {
+            background-color: white;
+            color: #0275d8;
+        }
+        
+        .cta .btn:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Footer */
+        .site-footer {
+            background-color: #343a40;
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #adb5bd;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #495057;
+        }
+        
+        /* Authentication Forms */
+        .auth-page {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+            min-height: calc(100vh - 77px);
+            display: flex;
+            align-items: center;
+        }
+        
+        .auth-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-toggle {
+            display: flex;
+            margin-top: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .auth-toggle button {
+            flex: 1;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .auth-toggle button.active {
+            background-color: #0275d8;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .radio-group label {
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard {
+            padding: 40px 0;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .dashboard-tabs button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .dashboard-tabs button.active {
+            color: #0275d8;
+            border-bottom: 3px solid #0275d8;
+        }
+        
+        .job-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .job-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .job-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .job-details {
+            margin-bottom: 15px;
+        }
+        
+        .job-details p {
+            margin-bottom: 8px;
+        }
+        
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .main-nav {
+                margin-top: 15px;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .main-nav li {
+                margin: 5px 10px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">BlueConnect</a>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="Blues.html">Browse services</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Home Page Content -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connect with Skilled Professionals for Any Job</h1>
+            <p>Find reliable blue-collar workers for your projects or offer your skills to clients</p>
+            <div class="hero-buttons">
+                <a href="/api/worker/register" class="btn btn-primary">Find Worker</a>
+                <a href="/api/client/register.html" class="btn btn-secondary">Become a Customer</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="categories">
+        <div class="container">
+            <h2>Browse service Categories</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #e3f2fd; padding: 20px; text-align: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0277bd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 13.341V22H4a8 8 0 0 1 10-8.659zM16 18h2"></path>
+                            <path d="M18 15h-2"></path>
+                            <path d="M14 13.341c1.1-.13 2.16-.38 3.14-.73A7.994 7.994 0 0 0 22 5.5a4.3 4.3 0 0 0-.1-.79"></path>
+                            <path d="M4.16 5.3A4.14 4.14 0 0 0 4 6a7.992 7.992 0 0 0 10 7.891"></path>
+                            <path d="M11.964 3a3.021 3.021 0 0 1 2.716 1.714"></path>
+                            <path d="M9.32 3.25a3 3 0 0 0-5.9.75h1.86L3 11l3-1 3 2-1.13-4.75h2.98"></path>
+                        </svg>
+                    </div>
+                    <div class="category-card-content">
+                        <h3>Plumbing</h3>
+                        <p>Find expert plumbers for repairs and installations</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #fff8e1; padding: 20px; text-align: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ffb300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 20V8.5a4.5 4.5 0 0 0-9 0v11.5"></path>
+                            <path d="m2 19 2.5-5H10l2 5"></path>
+                            <path d="m22 19-2.5-5H14l-2 5"></path>
+                        </svg>
+                    </div>
+                    <div class="category-card-content">
+                        <h3>Electrical</h3>
+                        <p>Connect with licensed electricians for all your needs</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #efebe9; padding: 20px; text-align: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#795548" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"></path>
+                            <path d="m9 8 3-3 3 3"></path>
+                            <path d="M12 5v9"></path>
+                            <rect x="5" y="14" width="14" height="7" rx="1"></rect>
+                        </svg>
+                    </div>
+                    <div class="category-card-content">
+                        <h3>Carpentry</h3>
+                        <p>Skilled carpenters for woodwork and construction</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #e0f7fa; padding: 20px; text-align: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00acc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m2 12 10 9 10-9-10-9-4.48 4.48"></path>
+                            <path d="m2 12 10-9 10 9"></path>
+                            <path d="m8.5 8.5-1 1"></path>
+                            <path d="M16 12h-4"></path>
+                        </svg>
+                    </div>
+                    <div class="category-card-content">
+                        <h3>Painting</h3>
+                        <p>Professional painters for interior and exterior jobs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>Post Your Job</h3>
+                    <p>Describe your project, budget, and timeline. Be as detailed as possible.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Get Matched</h3>
+                    <p>Our system matches you with qualified professionals in your area.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Hire & Pay</h3>
+                    <p>Select your preferred worker, communicate, and pay securely through the platform.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="featured-workers">
+        <div class="container">
+            <h2>Featured Blue Providers</h2>
+            <div class="worker-grid">
+                <div class="worker-card">
+                    <img src="https://source.unsplash.com/random/300x200/?handyman" alt="Worker photo">
+                    <div class="worker-info">
+                        <h3>James Wilson</h3>
+                        <div class="worker-rating">
+                            ★★★★★ (4.9)
+                        </div>
+                        <div class="worker-skills">
+                            <span class="skill-tag">Plumbing</span>
+                            <span class="skill-tag">Electrical</span>
+                        </div>
+                        <p>Licensed master plumber with 15 years of experience in residential and commercial projects.</p>
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="worker-card">
+                    <img src="https://source.unsplash.com/random/300x200/?carpenter" alt="Worker photo">
+                    <div class="worker-info">
+                        <h3>Sarah Johnson</h3>
+                        <div class="worker-rating">
+                            ★★★★☆ (4.2)
+                        </div>
+                        <div class="worker-skills">
+                            <span class="skill-tag">Carpentry</span>
+                            <span class="skill-tag">Furniture</span>
+                        </div>
+                        <p>Skilled carpenter specializing in custom furniture and home renovations.</p>
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="worker-card">
+                    <img src="https://source.unsplash.com/random/300x200/?painter" alt="Worker photo">
+                    <div class="worker-info">
+                        <h3>Michael Brown</h3>
+                        <div class="worker-rating">
+                            ★★★★★ (4.8)
+                        </div>
+                        <div class="worker-skills">
+                            <span class="skill-tag">Painting</span>
+                            <span class="skill-tag">Drywall</span>
+                        </div>
+                        <p>Professional painter with attention to detail and competitive rates.</p>
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of professionals and clients on our platform</p>
+            <a href="register.html" class="btn btn-large">Sign Up Now</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>BlueConnect</h3>
+                    <p>Connecting skilled workers with clients for all types of blue-collar jobs.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>For Workers</h3>
+                    <ul>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Sign Up as Worker</a></li>
+                        <li><a href="#">Worker Success Stories</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>For Clients</h3>
+                    <ul>
+                        <li><a href="#">Find a Worker</a></li>
+                        <li><a href="#">Post a Job</a></li>
+                        <li><a href="#">Client Reviews</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Blue</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BlueConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Basic JavaScript for interface interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle for auth tabs
+            const authTabButtons = document.querySelectorAll('.auth-toggle button');
+            if (authTabButtons.length) {
+                authTabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        authTabButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+            
+            // Toggle for dashboard tabs
+            const dashboardTabButtons = document.querySelectorAll('.dashboard-tabs button');
+            if (dashboardTabButtons.length) {
+                dashboardTabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        dashboardTabButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

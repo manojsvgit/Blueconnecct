@@ -8,10 +8,12 @@ const path = require('path');
 const workerController = require('./controllers/worker');
 const clientController = require('./controllers/client');
 const adminController = require('./controllers/admin');
+const landingController = require('./controllers/landing');
 const adminRoutes = require('./routes/admin');
 const workerRoutes = require('./routes/worker');
 const clientRoutes = require('./routes/client');
 const { requireWorkerAuth, requireClientAuth, requireAdminAuth } = require('./middleware/auth');
+const nodemailer = require('nodemailer')
 
 dotenv.config();
 const app = express();
@@ -58,9 +60,40 @@ app.listen(port, () => {
 	console.log(`Listening on port http://localhost:${port}`);
 });
 
-app.get('/', (req, res) => {
-	res.send('Hello Word');
+// app.get('/', (req, res) => {
+// 	res.send('Hello Word');
+// });
+
+//mailer
+const GMAIL=process.env.GMAIL || 'cvi23csds@cmrit.ac.in';
+const pass=process.env.PASSWORD || 'vishwak@151370';
+
+const transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth:{
+		user: GMAIL,
+		pass: pass
+	}
 });
+
+app.post('/sendmail',(res,req)=>{
+	const mailOptions={
+		from : 'cvi23csds@cmrit.ac.in',
+		to : 'as23csds@cmrit.ac.in',
+		subject : 'demo',
+		text : 'hi this is demo email'
+	}
+
+	transporter.sendMail(mailOptions,(err,info)=>{
+		if (err){
+			return res.statusCode(500).send(err.toString());
+
+		}
+		res.status(200).send('email sent'+info.response);
+	});
+});
+
+app.get('/',landingController.renderHomeDashboard);
 
 // Public Route for Admin
 app.post('/api/admin/login', adminController.login_post);
