@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/favicon-32.svg" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/favicon-256.svg" />
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Blue Connect</b></a>
+            </div>
+            <nav class="nav-content">
+                <ul class="nav-menu">
+                    <li><a href="/api/client/home" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">About Us</a></li>
+                    <li><a href="#" class="nav-link">For Clients</a></li>
+                    <li><a href="#" class="nav-link">For Workers</a></li>
+                    <li><a href="#" class="nav-link">Contact Us</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="/api/client/login" class="cta-button">Log In</a>
+                    <a href="/api/client/register" class="cta-button primary">Register</a>
+                </div>
+            </nav>
+            <button class="menu-button">
+                <img src="/menu-icon.svg" alt="Menu" class="menu-icon" />
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <section class="section light-gradient">
+            <div class="container">
+                <div class="hero-grid">
+                    <img src="/assets/client.jpg" alt="Client Login" class="hero-illustration" />
+                    <form action="/api/client/login" method="post" class="login-form">
+                        <div class="form-box">
+                            <% if(errMsg !== '') { %>
+                                <p class="error-message"><%= errMsg %></p>
+                            <% } %>
+                            <h1 class="heading">Login as a Client</h1>
+                            <label for="email" class="form-label">Email address:</label>
+                            <input type="email" name="email" id="email" class="text-field" placeholder="Enter your email" required />
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" name="password" id="password" class="text-field" placeholder="Enter password" required />
+                            <button type="submit" class="button">Login as Client</button>
+                            <p class="account-info">
+                                <a href="/api/client/register">Don't have an Account?</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

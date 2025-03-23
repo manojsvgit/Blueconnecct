@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Worker Profile</title>
+
+		<link rel="stylesheet" href="/styles.css" />
+	</head>
+	<body>
+		<div
+			data-collapse="small"
+			data-animation="default"
+			data-duration="400"
+			data-easing="ease"
+			data-easing2="ease"
+			role="banner"
+			class="nav-bar w-nav"
+		>
+			<div class="nav-container w-container">
+				<div class="logo-div">
+					<a href="/api/worker/home" aria-current="page" class="logotext" style="margin-right: 350px"
+						><b>Blue Connect</b></a
+					>
+				</div>
+
+				<nav role="navigation" class="nav-content w-nav-menu">
+					<div class="nav-menu">
+						<a href="/api/worker/home" class="nav-link w-nav-link">Home</a>
+						<a href="/api/worker/mywork" class="nav-link w-nav-link">My Works</a>
+						<a href="/api/worker/notification" class="nav-link w-nav-link">Notifications</a>
+						<a href="/api/worker/profile" class="nav-link w-nav-link" style="color: #710101"><b>My Profile</b></a>
+					</div>
+
+					<div class="nav-cta-button-container">
+						<a href="/api/worker/logout" class="nav-link cta-button1 w-nav-link">Log Out</a>
+					</div>
+				</nav>
+				<div class="menu-button w-nav-button">
+					<img
+						src="https://assets.website-files.com/62aee78456e4207786ac4d18/62aee78456e4200f2eac4d49_Menu%20Icon.svg"
+						loading="lazy"
+						width="24"
+						alt=""
+						class="menu-icon"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<section class="myProfile section light-color-gradient" style="margin-top: 2rem">
+			<div
+				class="flex"
+				style="border: none; border-radius: 5px; display: flex; justify-content: space-evenly; box-shadow: none; "
+			>
+				<img src="/Assets/profile.png" alt="" style="max-width: 31%; border-radius: 5px" />
+
+				<div class="profile-area-right flex">
+					<p style="font-size: 2rem"><%=worker.name%></p>
+					<p><i><%=worker.bio%></i></p>
+					<p>+91-<%=worker.phone%></p>
+					<p><%=worker.email%></p>
+					<p><b> Address</b>: <a href="<%=worker.address%>" target="_blank">LINK</a></p>
+
+					<button class="table-accept-btn btn-save1" style="margin-block: 1rem; background-color: black" id="addTask">
+						Edit Profile
+					</button>
+				</div>
+			</div>
+
+			<div id="myModal" class="modal">
+				<form action="/api/worker/update" method="post">
+					<div class="modal-content" style="padding: 30px 50px">
+						<span class="close" id="closeBtn">&times;</span>
+						<h1 style="text-align: center; font-size: 200%; font-weight: bolder">Edit Profile</h1>
+						<label class="form-label">Name:</label>
+						<input type="text" class="text-field no-margin w-input" value="<%=worker.name%>" name="name" required />
+						<label class="form-label">Mobile No :</label>
+						<input type="text" class="text-field no-margin w-input" value="<%=worker.phone%>" name="phone" required />
+						<label class="form-label">Address:</label>
+						<input type="text" class="text-field no-margin w-input" value="<%=worker.address%>" name="address" required />
+						<label class="form-label">Highest Qualification:</label>
+						<input type="text" class="text-field no-margin w-input" value="<%=worker.highestQualification%>" name="highestQualification" required />
+						<label class="form-label">Bio:</label>
+						<input type="text" class="text-field no-margin w-input" value="<%=worker.bio%>" name="bio" required />
+						<button class="table-accept-btn btn-save1" style="margin-block: 1rem; background-color: black">Save</button>
+					</div>
+				</form>
+			</div>
+		</section>
+		<script>
+			var modal = document.getElementById('myModal');
+			var btn = document.getElementById('addTask');
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = 'none';
+				}
+			};
+			btn.onclick = function () {
+				modal.style.display = 'block';
+			};
+		</script>
+	</body>
+</html>
